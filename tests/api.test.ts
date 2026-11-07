@@ -60,6 +60,29 @@ describe('availability and bookings', () => {
     ]);
   });
 
+  it('returns only free rooms in the requested category', async () => {
+    addRoom({ number: '101', category: 'Standard', pricePerNight: 2500 });
+    const deluxe = addRoom({ number: '201', category: 'Deluxe', pricePerNight: 4200 });
+    const taken = addRoom({ number: '202', category: 'Deluxe', pricePerNight: 4500 });
+    addRoom({ number: '203', category: 'Deluxe', pricePerNight: 4800, status: 'maintenance' });
+    addBooking({ roomId: taken, checkIn: '2026-11-20', checkOut: '2026-11-22' });
+
+    const response = await getAvailability(
+      new Request('http://localhost/api/availability?checkIn=2026-11-20&checkOut=2026-11-22&category=Deluxe'),
+    );
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual([
+      {
+        id: deluxe,
+        number: '201',
+        category: 'Deluxe',
+        pricePerNight: 4200,
+        nights: 2,
+        totalPrice: 8400,
+      },
+    ]);
+  });
+
   it('rejects an overlapping stay', async () => {
     const roomId = addRoom({ number: '101' });
     addBooking({ roomId, checkIn: '2026-11-10', checkOut: '2026-11-15' });
