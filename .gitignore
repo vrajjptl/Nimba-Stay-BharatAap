@@ -1,0 +1,34 @@
+# dependencies
+node_modules
+
+# next.js
+.next
+out
+
+# sqlite (created by npm run seed)
+data
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# env and secrets
+.env
+.env.*
+!.env.example
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# tests
+coverage
+
+# logs and OS junk
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# deploy
+.vercel
+*.pem
