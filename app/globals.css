@@ -1,18 +1,21 @@
 :root {
   color-scheme: light;
-  --paper: #f3efe4;
-  --ink: #1b2822;
-  --muted: #5d6a62;
-  --leaf: #1e5c42;
-  --leaf-dark: #143e2c;
-  --line: #e2dacb;
-  --card: #fffdf8;
-  --danger: #8d2f2f;
-  --danger-bg: #fdeeee;
-  --ok: #1c5c39;
-  --ok-bg: #e6f6ec;
-  --sand: #f4ead4;
-  --sand-ink: #7a5412;
+  --paper: #e7eef8;
+  --ink: #1a2340;
+  --muted: #5a6784;
+  --leaf: #2f3f9f;
+  --leaf-dark: #1d2a72;
+  --line: #d3dced;
+  --card: #ffffff;
+  --field: #c5d0e6;
+  --danger: #b4234a;
+  --danger-bg: #fde8ef;
+  --ok: #0c6e86;
+  --ok-bg: #e2f5f8;
+  --sand: #fff1d6;
+  --sand-ink: #8a4b08;
+  --wash: #f4f7fd;
+  --selected: #e4e9fb;
 }
 
 * {
@@ -23,7 +26,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(#1e5c42, #1e5c42) 0 0 / 100% 8px no-repeat,
+    linear-gradient(#2f3f9f, #2f3f9f) 0 0 / 100% 8px no-repeat,
     var(--paper);
   color: var(--ink);
   font: 16px/1.45 "Segoe UI", sans-serif;
@@ -79,6 +82,7 @@ h2 {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(26, 35, 64, 0.06);
 }
 
 .panel {
@@ -114,7 +118,8 @@ button {
 input,
 select {
   width: 100%;
-  border: 1px solid #cfc6b4;
+  min-height: 40px;
+  border: 1px solid var(--field);
   background: #fff;
   color: var(--ink);
   border-radius: 8px;
@@ -124,10 +129,11 @@ select {
 button {
   border: 0;
   border-radius: 8px;
-  padding: 9px 14px;
+  min-height: 40px;
+  padding: 8px 16px;
   background: var(--leaf);
   color: #fff;
-  font-weight: 600;
+  font-weight: 650;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -147,22 +153,23 @@ button:disabled {
 
 button.secondary,
 button.danger {
+  min-height: 34px;
   background: #fff;
 }
 
 button.secondary {
   color: var(--leaf-dark);
-  border: 1px solid #cfc6b4;
+  border: 1px solid var(--field);
 }
 
 button.secondary:hover,
 button.danger:hover {
-  background: #f7f4ec;
+  background: var(--wash);
 }
 
 button.danger {
   color: var(--danger);
-  border: 1px solid #e7c7c7;
+  border: 1px solid #f3c2d0;
   padding: 6px 10px;
 }
 
@@ -232,15 +239,59 @@ th {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
-  background: #f7f3ea;
+  background: var(--wash);
 }
 
 tr:last-child td {
   border-bottom: 0;
 }
 
-tr.is-selected td {
-  background: #e7f3ec;
+tbody tr:hover td {
+  background: var(--wash);
+}
+
+tr.is-selected td,
+tr.is-selected:hover td {
+  background: var(--selected);
+}
+
+tr.is-cancelled td {
+  color: var(--muted);
+}
+
+.room-no {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: #24356f;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.chip-standard {
+  background: #e5f2ff;
+  color: #1a568a;
+}
+
+.chip-deluxe {
+  background: #f3e8ff;
+  color: #6d28a8;
+}
+
+.chip-suite {
+  background: #fff0d6;
+  color: #9a4d08;
+}
+
+.phone {
+  font-variant-numeric: tabular-nums;
 }
 
 .num {
@@ -260,8 +311,8 @@ tr.is-selected td {
   align-items: end;
   margin-top: 12px;
   padding: 14px;
-  background: #eef6f1;
-  border-color: #c9e0d4;
+  background: #eef1fb;
+  border-color: #c9d2f2;
 }
 
 .book p {

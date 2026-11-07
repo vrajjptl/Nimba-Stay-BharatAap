@@ -282,8 +282,10 @@ export default function HomePage() {
                   const isSelected = room.id === selectedId;
                   return (
                     <tr key={room.id} className={isSelected ? 'is-selected' : undefined}>
-                      <td>{room.number}</td>
-                      <td>{room.category}</td>
+                      <td className="room-no">{room.number}</td>
+                      <td>
+                        <span className={`chip chip-${room.category.toLowerCase()}`}>{room.category}</span>
+                      </td>
                       <td className="num">{inr(room.pricePerNight)}</td>
                       <td className="num">{inr(room.totalPrice)}</td>
                       <td className="actions">
@@ -358,10 +360,10 @@ export default function HomePage() {
               </thead>
               <tbody>
                 {bookings.map((booking) => (
-                  <tr key={booking.id}>
-                    <td>{booking.roomNumber}</td>
+                  <tr key={booking.id} className={booking.status === 'cancelled' ? 'is-cancelled' : undefined}>
+                    <td className="room-no">{booking.roomNumber}</td>
                     <td>{booking.guestName}</td>
-                    <td>{booking.phone}</td>
+                    <td className="phone">{booking.phone}</td>
                     <td>{displayDate(booking.checkIn)}</td>
                     <td>{displayDate(booking.checkOut)}</td>
                     <td>
